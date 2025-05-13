@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDCAT Registration</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        /* Upload Document Page */
+        .file-input-group {
+            margin-bottom: 20px;
+            padding-right: 20px;
+            text-align: left;
+        }
+
+        .file-input-group label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .file-input-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .file-input-group .error-message {
+            color: red;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .instruction-box {
+            margin-bottom: 30px;
+            /* More space below instructions */
+            padding: 20px;
+            /* Add more padding for better readability */
+        }
+
+        /* Fee Bill Page */
+        .fee-details {
+            text-align: left;
+            /* Align content to the left for better readability */
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            /* Add spacing between sections */
+            background: #f8f8f8;
+            /* Light background for clarity */
+        }
+
+        .fee-bill {
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            text-align: left;
+            /* Align text for a professional look */
+        }
+
+        .fee-bill .bill-header {
+            border-bottom: 2px solid #4caf50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .fee-bill .bill-details {
+            margin-bottom: 15px;
+        }
+
+        .fee-bill .bill-item {
+            margin-bottom: 10px;
+        }
+
+        .fee-bill .bill-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        /* Application Dashboard Page */
+        .section-card {
+            margin-bottom: 20px;
+            /* Add more spacing between cards */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two-column layout */
+            gap: 15px;
+            /* Add spacing between grid items */
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .status-badge.success {
+            background: #4caf50;
+            color: #fff;
+        }
+
+        .status-badge.error {
+            background: #f44336;
+            color: #fff;
+        }
+
+        .status-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .status-icon {
+            font-size: 2rem;
+            color: #4caf50;
+        }
+
+        .status-text h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+
+        input[type="email"],
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+
+        .error {
+            border-color: red !important;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .nav-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* New Style for Password Show/Hide */
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input[type="password"],
+        .password-container input[type="text"] {
+            width: 100%;
+            padding-right: 50px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .password-container .toggle-password {
+            position: absolute;
+            right: 2.5px;
+            top: 25%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4caf50;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .password-container .toggle-password:hover {
+            color: #45a049;
+        }
+
+        .section-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        /* Optional: Add hover effect for the toggle button */
+        .toggle-password:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            font-size: 0.9rem;
+            text-align: left;
+            margin-top: -8px;
+        }
+
+        .strength-low {
+            color: red;
+        }
+
+        .strength-medium {
+            color: orange;
+        }
+
+        .strength-high {
+            color: green;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-bar div {
+            height: 10px;
+            width: 0;
+            background-color: #4caf50;
+            transition: width 0.3s;
+        }
+
+        /* Instruction Box */
+        .instruction-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .instruction-box h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .instruction-box ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        /* Checkbox Styling */
+        .checkbox-group {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #4caf50;
+            /* Modern browsers */
+        }
+
+        .checkbox-group label {
+            font-size: 0.95rem;
+            color: #555;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .checkbox-group input[type="checkbox"]:hover {
+            border-color: #4caf50;
+        }
+
+        .checkbox-group input[type="checkbox"]:focus {
+            outline: 2px solid #4caf50;
+        }
+
+        /* Error Message for Checkbox */
+        #checkboxError {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Container for the Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 30px;
+            background-color: #e0e0e0;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        /* Styles for the Instructions Page */
+        #instructionPage {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .instruction-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .instruction-box {
+            display: inline-block;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            text-align: left;
+        }
+
+        .instruction-box h3 {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .instruction-box ul {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .instruction-box p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button#startProcessBtn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button#startProcessBtn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Print Styles */
+        @media print {
+
+            /* Hide everything except for the content to be printed */
+            body * {
+                visibility: hidden;
+                /* Hide all content */
+            }
+
+            /* Fee Bill Section (visible during print) */
+            #feeBillSection,
+            #dashboardPage {
+                visibility: visible;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                color: #000;
+            }
+
+            /* Remove box shadows and borders for print */
+            .container,
+            .section-card,
+            .fee-bill {
+                box-shadow: none;
+                border: none;
+            }
+
+            /* Typography for print */
+            h1,
+            h2 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            /* Fee Bill Layout */
+            .fee-bill {
+                margin-bottom: 20px;
+            }
+
+            .bill-header {
+                text-align: center;
+                border-bottom: 2px solid #4caf50;
+                margin-bottom: 15px;
+            }
+
+            .bill-details,
+            .info-grid {
+                margin: 15px 0;
+                font-size: 1rem;
+            }
+
+            .bill-item,
+            .info-item {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+
+            .bill-total {
+                font-weight: bold;
+                font-size: 1.2rem;
+                text-align: right;
+                margin-top: 20px;
+            }
+
+            /* Dashboard Section */
+            .info-grid {
+                display: block;
+                /* Convert grid to block for printing */
+            }
+
+            .info-item {
+                margin-bottom: 8px;
+                font-size: 1rem;
+            }
+
+            /* Status Badges */
+            .status-badge {
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background: #4caf50;
+                color: #fff;
+            }
+
+            .status-box {
+                margin-top: 20px;
+                font-weight: bold;
+                font-size: 1rem;
+                padding: 10px;
+                text-align: left;
+                background: #e8f5e9;
+                border-left: 4px solid #4caf50;
+            }
+
+            /* Hide buttons in print */
+            button,
+            .generate-bill-btn,
+            .status-icon,
+            .toggle-password {
+                display: none !important;
+            }
+
+            /* Print the content in the same structure */
+            .section-card {
+                margin-bottom: 20px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .visible-for-print {
+                display: block !important;
+                visibility: visible !important;
+            }
+        }
+
+        button#logoutButton {
+            background-color: #f44336;
+            /* Red color for logout */
+            color: #fff;
+            /* White text */
+            border: none;
+            /* No border */
+            padding: 10px 20px;
+            /* Padding for better size */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Pointer cursor for better UX */
+            font-size: 1rem;
+            /* Make text readable */
+            margin-top: 20px;
+            /* Add space above */
+        }
+
+        button#logoutButton:hover {
+            background-color: #d32f2f;
+            /* Darker red on hover */
+            transition: background-color 0.3s ease;
+            /* Smooth color transition */
+        }
+
+        .remove-btn {
+            background-color: #f44336;
+            /* Red color for remove */
+            color: white;
+            /* White text */
+            border: none;
+            /* No border */
+            padding: 5px 10px;
+            /* Button size */
+            border-radius: 5px;
+            /* Rounded corners */
+            font-size: 0.9rem;
+            /* Slightly smaller text */
+            cursor: pointer;
+            /* Pointer cursor */
+            margin-left: 10px;
+            /* Spacing from input field */
+        }
+
+        .remove-btn:hover {
+            background-color: #d32f2f;
+            /* Darker red on hover */
+            transition: background-color 0.3s ease;
+            /* Smooth transition */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="landingPage">
+        <h1>Welcome to MDCAT Registration</h1>
+        <button id="getStarted">Get Started</button>
+    </div>
+
+    <div class="container hidden" id="loginRegisterPage">
+        <h1>Login or Register</h1>
+        <button id="loginBtn">Login</button>
+        <button id="registerBtn">Register</button>
+    </div>
+
+    <div class="container hidden" id="loginFormPage">
+        <h1>Login</h1>
+        <input type="email" id="loginEmail" placeholder="Email (e.g., example@gmail.com)" required>
+        <br><br>
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="button" id="toggleLoginPassword" class="toggle-password">Show</button>
+        </div>
+        <br><br>
+        <button id="loginSubmit">Login</button>
+        <p><a href="#" id="goToRegister" class="nav-link">Don't have an account? Register</a></p>
+    </div>
+
+    <div class="container hidden" id="registerFormPage">
+        <h1>Register</h1>
+        <input type="email" id="registerEmail" placeholder="Email (e.g., example@gmail.com)" required>
+        <br><br>
+        <input type="text" id="registerCnic" placeholder="CNIC (e.g., 12345-1234567-1)" required>
+        <br><br>
+        <div class="password-container">
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button type="button" id="toggleRegisterPassword" class="toggle-password">Show</button>
+        </div>
+        <p class="password-strength" id="passwordStrength"></p>
+        <div class="checkbox-group">
+            <input type="checkbox" id="agreement">
+            <label for="agreement">
+                I confirm that my email and password are correct, and I agree to the terms.
+            </label>
+        </div>
+        <p id="checkboxError" class="error hidden">You must check the checkbox to proceed.</p>
+        <button id="registerSubmit">Register</button>
+        <p><a href="#" id="goToLogin" class="nav-link">Already have an account? Login</a></p>
+    </div>
+
+    <div id="instructionPage" class="container hidden">
+        <h2 class="instruction-title">Important Instructions</h2>
+        <div class="instruction-box">
+            <h3>Steps to Complete Your Form:</h3>
+            <ul>
+                <li>Step 1: Fill in your personal details.</li>
+                <li>Step 2: Upload the required documents.</li>
+                <li>Step 3: Generate and review your fee bill.</li>
+            </ul>
+            <p style="color: red;"><strong>Note:</strong> Once you click the <strong>Save/Submit</strong> button, you
+                will not be able to
+                make changes or go back.</p>
+            <h3>Important Rules & Regulations:</h3>
+            <ul>
+                <li>You must fill in all required fields correctly.</li>
+                <li>Ensure that the documents you upload are in the correct format.</li>
+                <li>You can only submit once; after submission, no further edits are allowed.</li>
+                <li>Make sure your contact information is accurate.</li>
+            </ul>
+            <button id="startProcessBtn" class="btn">Continue</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="successPage">
+        <h1>Registered Successfully</h1>
+        <p>You will be redirected to the login page in <span id="timer">5</span> seconds.</p>
+        <div class="progress-bar">
+            <div id="progressBar"></div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="personalDetailsPage">
+        <h1>Personal Details</h1>
+        <form id="personalDetailsForm">
+            <div class="form-group">
+                <label class="required">Student Name</label>
+                <input type="text" id="studentName" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Father Name</label>
+                <input type="text" id="fatherName" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Contact Number</label>
+                <input type="tel" id="contactNumber" pattern="^03\d{2}-\d{7}$" placeholder="03XX-XXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Gender</label>
+                <select id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Birth Date</label>
+                <input type="date" id="birthDate" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Email Address</label>
+                <input type="email" id="emailAddress" readonly required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">CNIC</label>
+                <input type="text" id="cnicNumber" readonly required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">City of Residence</label>
+                <select id="cityResidence" required>
+                    <option value="">Select City</option>
+                    <option value="karachi">Karachi</option>
+                    <option value="lahore">Lahore</option>
+                    <option value="islamabad">Islamabad</option>
+                    <option value="peshawar">Peshawar</option>
+                    <option value="quetta">Quetta</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">City of Domicile</label>
+                <select id="cityDomicile" required>
+                    <option value="">Select City</option>
+                    <option value="karachi">Karachi</option>
+                    <option value="lahore">Lahore</option>
+                    <option value="islamabad">Islamabad</option>
+                    <option value="peshawar">Peshawar</option>
+                    <option value="quetta">Quetta</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">University</label>
+                <select id="university" required>
+                    <option value="">Select University</option>
+                    <option value="ku">Dow University</option>
+                    <option value="nust">SZAMBU</option>
+                    <option value="lums">UHS</option>
+                    <option value="aku">KMU</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Exam City</label>
+                <select id="examCity" required>
+                    <option value="">Select City</option>
+                    <option value="karachi">Karachi</option>
+                    <option value="lahore">Lahore</option>
+                    <option value="islamabad">Islamabad</option>
+                    <option value="peshawar">Peshawar</option>
+                    <option value="quetta">Quetta</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Obtained Marks</label>
+                <input type="number" id="obtainedMarks" min="0" max="1100" required>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="personalagreement">
+                <label for="agreement">
+                    I confirm that above mentioned detail is correct to my knowledge.(Once you submit, can't revisit the
+                    page)
+                </label>
+            </div>
+            <p id="checkboxError" class="error hidden">You must check the checkbox to proceed.</p>
+            <button type="submit" id="submitDetails">Submit Details</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="documentUploadPage">
+        <div class="instruction-box">
+            <h2>Important Instructions</h2>
+            <p>Please ensure your documents meet the following requirements:</p>
+            <ul>
+                <li>All certificates must be in PDF format only</li>
+                <li>Student photo must be in JPG or JPEG format only</li>
+                <li>File size should not exceed 2MB</li>
+            </ul>
+        </div>
+
+        <h1>Document Upload</h1>
+        <form id="documentUploadForm">
+            <div class="document-section">
+                <div class="file-input-group">
+                    <label class="required">Student Photo (JPG/JPEG only)</label>
+                    <input type="file" id="studentPhoto" accept=".jpg,.jpeg" required>
+                    <div class="error-message" id="photoError"></div>
+                </div>
+
+                <div class="file-input-group">
+                    <label class="required">Matric Mark Sheet (PDF only)</label>
+                    <input type="file" id="matricMarksheet" accept=".pdf" required>
+                    <div class="error-message" id="matricError"></div>
+                </div>
+
+                <div class="file-input-group">
+                    <label class="required">Inter Mark Sheet (PDF only)</label>
+                    <input type="file" id="interMarksheet" accept=".pdf" required>
+                    <div class="error-message" id="interError"></div>
+                </div>
+
+                <div class="file-input-group">
+                    <label class="required">Domicile Certificate (PDF only)</label>
+                    <input type="file" id="domicile" accept=".pdf" required>
+                    <div class="error-message" id="domicileError"></div>
+                </div>
+            </div>
+
+            <button type="submit" id="saveDetails">Save Details</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="feePortalPage">
+        <h1>Fee Payment Portal</h1>
+
+        <div class="fee-details">
+            <h2>Registration Fee Details</h2>
+            <div class="fee-amount">Total Amount: PKR 6,000</div>
+            <button class="generate-bill-btn" onclick="generateFeeBill()">Generate Fee Bill</button>
+
+            <!-- Fee Bill Section -->
+            <div class="fee-bill-section" id="feeBillSection" style="display: none;">
+                <div class="fee-bill" id="feeBill">
+                    <div class="bill-header">
+                        <h2>MDCAT Registration Fee Bill</h2>
+                        <p>Bill Generation Date: <span id="billDate"></span></p>
+                        <p>Due Date: <span id="dueDate"></span></p>
+                    </div>
+
+                    <div class="bill-details">
+                        <div class="bill-item">
+                            <strong>Student Name:</strong>
+                            <span id="billStudentName"></span>
+                        </div>
+                        <div class="bill-item">
+                            <strong>CNIC:</strong>
+                            <span id="billCNIC"></span>
+                        </div>
+                        <div class="bill-item">
+                            <strong>University:</strong>
+                            <span id="billUniversity"></span>
+                        </div>
+                        <div class="bill-item">
+                            <strong>Bill Number:</strong>
+                            <span id="billNumber"></span>
+                        </div>
+                    </div>
+
+                    <div class="bill-total">
+                        Total Amount: PKR 6,000/-
+                    </div>
+
+                    <button onclick="printFeeBill()" class="generate-bill-btn">Print Fee Bill</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Select Payment Method:</h3>
+        <div class="payment-methods">
+            <div class="payment-method" onclick="selectPaymentMethod(this, 'bank')">
+                <h3>Bank Transfer</h3>
+                <p>Pay through bank deposit or online transfer</p>
+                <div class="bank-details hidden">
+                    <p><strong>Bank:</strong> HBL Bank</p>
+                    <p><strong>Account Title:</strong> MDCAT Registration</p>
+                    <p><strong>Account Number:</strong> 1234-5678-9012-3456</p>
+                    <p><strong>IBAN:</strong> PK36 HABB 0000 1234 5678 9012</p>
+                    <p><strong>Branch Code:</strong> 0123</p>
+                </div>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod(this, 'online')">
+                <h3>Online Payment</h3>
+                <p>Pay using credit/debit card or mobile wallet</p>
+                <div class="bank-details hidden">
+                    <p><strong>Accepted Methods:</strong></p>
+                    <ul>
+                        <li>Credit/Debit Cards (Visa, Mastercard)</li>
+                        <li>EasyPaisa</li>
+                        <li>JazzCash</li>
+                    </ul>
+                    <button onclick="processOnlinePayment()" class="payment-button">Pay Online</button>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="proceedToFinalStep()" id="proceedButton" class="payment-button" style="margin-top: 20px;">
+            Proceed to Final Step
+        </button>
+    </div>
+
+    <div class="container hidden" id="dashboardPage">
+        <h1>Application Dashboard</h1>
+        <div class="review-section">
+            <div class="section-card">
+                <h2>Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Student Name:</label>
+                        <span id="dash-studentName"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Father Name:</label>
+                        <span id="dash-fatherName"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>CNIC:</label>
+                        <span id="dash-cnic"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Contact:</label>
+                        <span id="dash-contact"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Gender:</label>
+                        <span id="dash-gender"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Birth Date:</label>
+                        <span id="dash-birthDate"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <span id="dash-email"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Academic Details</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>University:</label>
+                        <span id="dash-university"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Obtained Marks:</label>
+                        <span id="dash-marks"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Exam City:</label>
+                        <span id="dash-examCity"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Documents Status</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Photo:</label>
+                        <span class="status-badge success">Uploaded</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Matric Certificate:</label>
+                        <span class="status-badge success">Uploaded</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Inter Certificate:</label>
+                        <span class="status-badge success">Uploaded</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Domicile:</label>
+                        <span class="status-badge success">Uploaded</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Application Status</h2>
+                <div class="status-box">
+                    <div class="status-icon success">✓</div>
+                    <div class="status-text">
+                        <h3>Application Submitted Successfully</h3>
+                        <p>Your application has been received and is under review.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="printDashboard" class="print-btn">Print Application</button>
+        <button id="logoutButton" class="btn">Logout</button>
+
+    </div>
+
+    <script>
+        let savedCnic = "";
+        let savedEmail = "";
+        let savedPassword = "";
+
+        const landingPage = document.getElementById('landingPage');
+        const loginRegisterPage = document.getElementById('loginRegisterPage');
+        const loginFormPage = document.getElementById('loginFormPage');
+        const registerFormPage = document.getElementById('registerFormPage');
+        const goToRegister = document.getElementById('goToRegister');
+        const goToLogin = document.getElementById('goToLogin');
+        const personalDetailsPage = document.getElementById('personalDetailsPage');
+        const successPage = document.getElementById('successPage');
+
+        const getStarted = document.getElementById('getStarted');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const registerSubmit = document.getElementById('registerSubmit');
+        const loginSubmit = document.getElementById('loginSubmit');
+
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        const passwordInput = document.getElementById('registerPassword');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
+        const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+
+        // Navigation logic
+        getStarted.addEventListener('click', () => {
+            landingPage.classList.add('hidden');
+            loginRegisterPage.classList.remove('hidden');
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginRegisterPage.classList.add('hidden');
+            loginFormPage.classList.remove('hidden');
+        });
+
+        registerBtn.addEventListener('click', () => {
+            loginRegisterPage.classList.add('hidden');
+            registerFormPage.classList.remove('hidden');
+        });
+
+        goToRegister.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            navigateTo('registerFormPage'); // Navigate to the register page
+        });
+
+        goToLogin.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            navigateTo('loginFormPage'); // Navigate to the login page
+        });
+
+        // Navigation logic - Updated for Instruction Page
+        function navigateTo(pageId) {
+            document.querySelectorAll(".container").forEach(container => container.classList.add("hidden"));
+            document.getElementById(pageId).classList.remove("hidden");
+        }
+
+        // Password strength checker
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const hasLetters = /[a-zA-Z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChars = /[^a-zA-Z0-9]/.test(password);
+            const isLongEnough = password.length >= 8;
+
+            if (password.length < 6) {
+                passwordStrength.textContent = 'Strength: Low';
+                passwordStrength.className = 'password-strength strength-low';
+            } else if (isLongEnough && hasLetters && hasNumbers && hasSpecialChars) {
+                passwordStrength.textContent = 'Strength: High';
+                passwordStrength.className = 'password-strength strength-high';
+            } else if (hasLetters && hasNumbers) {
+                passwordStrength.textContent = 'Strength: Medium';
+                passwordStrength.className = 'password-strength strength-medium';
+            } else {
+                passwordStrength.textContent = 'Strength: Low';
+                passwordStrength.className = 'password-strength strength-low';
+            }
+        });
+
+        // Show/Hide password for registration
+        toggleRegisterPassword.addEventListener('click', () => {
+            const passwordField = document.getElementById('registerPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleRegisterPassword.textContent = 'Hide';
+            } else {
+                passwordField.type = 'password';
+                toggleRegisterPassword.textContent = 'Show';
+            }
+        });
+
+        // Show/Hide password for login
+        toggleLoginPassword.addEventListener('click', () => {
+            const passwordField = document.getElementById('loginPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleLoginPassword.textContent = 'Hide';
+            } else {
+                passwordField.type = 'password';
+                toggleLoginPassword.textContent = 'Show';
+            }
+        });
+
+        // CNIC Validation and Registration
+        registerSubmit.addEventListener('click', () => {
+            const email = document.getElementById('registerEmail').value;
+            const cnic = document.getElementById('registerCnic').value;
+            const agreement = document.getElementById('agreement').checked;
+            const password = passwordInput.value;
+
+            const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            const cnicRegex = /^\d{5}-\d{7}-\d{1}$/;
+
+            if (!emailRegex.test(email)) {
+                alert('Invalid email format!');
+                return;
+            }
+
+            if (!cnicRegex.test(cnic)) {
+                alert('Invalid CNIC format! Use XXXXX-XXXXXXX-X');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+
+            if (!agreement) {
+                document.getElementById('checkboxError').classList.remove('hidden');
+                return;
+            } else {
+                document.getElementById('checkboxError').classList.add('hidden');
+            }
+
+            savedCnic = cnic;
+            savedEmail = email;
+            savedPassword = password;
+
+            console.log('Saved CNIC:', savedCnic);
+            console.log('Saved Email:', savedEmail);
+
+            registerFormPage.classList.add('hidden');
+            successPage.classList.remove('hidden');
+            startRedirectCountdown();
+        });
+
+        // Login submit event
+        loginSubmit.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (email === savedEmail && password === savedPassword) {
+                loginFormPage.classList.add('hidden');
+                navigateTo('instructionPage'); // After login, show instruction page
+            } else {
+                alert('Invalid email or password!');
+            }
+        });
+
+
+        // Countdown logic
+        function startRedirectCountdown() {
+            let timeLeft = 5;
+            const interval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                progressBar.style.width = `${(5 - timeLeft) / 5 * 100}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    successPage.classList.add('hidden');
+                    loginFormPage.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        document.getElementById('startProcessBtn').addEventListener('click', () => {
+            // Populate CNIC and Email on the Personal Details Page
+            document.getElementById('emailAddress').value = savedEmail || '';
+            document.getElementById('cnicNumber').value = savedCnic || '';
+
+            // Navigate to the Personal Details Page
+            document.getElementById('instructionPage').classList.add('hidden');
+            document.getElementById('personalDetailsPage').classList.remove('hidden');
+        });
+
+
+        // Personal Details Form Validation
+        document.getElementById('personalDetailsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const inputs = form.querySelectorAll('input, select');
+            let isValid = true;
+
+            const userData = {
+                studentName: document.getElementById('studentName').value,
+                fatherName: document.getElementById('fatherName').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                gender: document.getElementById('gender').value,
+                birthDate: document.getElementById('birthDate').value,
+                cityResidence: document.getElementById('cityResidence').value,
+                cityDomicile: document.getElementById('cityDomicile').value,
+                university: document.getElementById('university').value,
+                examCity: document.getElementById('examCity').value,
+                obtainedMarks: document.getElementById('obtainedMarks').value,
+                cnic: document.getElementById('cnicNumber').value
+            };
+
+            // Save the user data in localStorage
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            // Validate required fields
+            inputs.forEach(input => {
+                if (input.required && !input.value) {
+                    input.classList.add('error');
+                    isValid = false;
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+
+            // Phone number validation
+            const phoneInput = document.getElementById('contactNumber');
+            const phoneRegex = /^03\d{2}-\d{7}$/;
+            if (!phoneRegex.test(phoneInput.value)) {
+                phoneInput.classList.add('error');
+                isValid = false;
+                alert('Invalid phone number format! Use 03XX-XXXXXXX');
+            } else {
+                phoneInput.classList.remove('error');
+            }
+
+            // Checkbox validation
+            const agreement = document.getElementById('personalagreement').checked;
+            if (!agreement) {
+                document.getElementById('checkboxError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('checkboxError').classList.add('hidden');
+            }
+
+            // Obtained Marks validation
+            const obtainedMarks = parseInt(document.getElementById('obtainedMarks').value, 10);
+            if (obtainedMarks < 500 || obtainedMarks > 1100) {
+                document.getElementById('obtainedMarks').classList.add('error');
+                isValid = false;
+                alert('Obtained marks must be between 500 and 1100.');
+            } else {
+                document.getElementById('obtainedMarks').classList.remove('error');
+            }
+
+            // Birth date validation
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const year = birthDate.getFullYear();
+            if (year < 2000 || year > 2008) {
+                document.getElementById('birthDate').classList.add('error');
+                isValid = false;
+                alert('Birth year must be between 2000 and 2008.');
+            } else {
+                document.getElementById('birthDate').classList.remove('error');
+            }
+
+            // Final validation check
+            if (isValid) {
+                alert('Personal details submitted successfully!');
+
+                // Navigate to the next page (Document Upload Page)
+                document.getElementById('personalDetailsPage').classList.add('hidden');
+                document.getElementById('documentUploadPage').classList.remove('hidden');
+            } else {
+                alert('Please fill in all required fields correctly.');
+            }
+        });
+
+        // Document upload form validation
+        document.getElementById('documentUploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // Validate photo
+            const photo = document.getElementById('studentPhoto').files[0];
+            if (photo) {
+                if (!photo.type.match('image/jpeg|image/jpg')) {
+                    document.getElementById('photoError').textContent = 'Only JPG/JPEG files are allowed';
+                    document.getElementById('photoError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('photoError').style.display = 'none';
+                }
+            }
+
+            // Validate PDF documents
+            const documents = {
+                'matricMarksheet': 'matricError',
+                'interMarksheet': 'interError',
+                'domicile': 'domicileError'
+            };
+
+            for (let [inputId, errorId] of Object.entries(documents)) {
+                const file = document.getElementById(inputId).files[0];
+                if (file) {
+                    if (file.type !== 'application/pdf') {
+                        document.getElementById(errorId).textContent = 'Only PDF files are allowed';
+                        document.getElementById(errorId).style.display = 'block';
+                        isValid = false;
+                    } else {
+                        document.getElementById(errorId).style.display = 'none';
+                    }
+                }
+            }
+
+            if (isValid) {
+                alert('Documents uploaded successfully!');
+
+                // Populate fee bill details
+                document.getElementById('billStudentName').textContent = document.getElementById('studentName').value;
+                document.getElementById('billCNIC').textContent = document.getElementById('cnicNumber').value;
+                document.getElementById('billUniversity').textContent = document.getElementById('university').value; // Assuming you want to show the university
+                document.getElementById('billNumber').textContent = Math.floor(Math.random() * 1000000); // Generate a random bill number for demonstration
+
+                // Set dates
+                const currentDate = new Date();
+                const deadlineDate = new Date();
+                deadlineDate.setDate(currentDate.getDate() + 7);
+
+                document.getElementById('billDate').textContent = currentDate.toLocaleDateString();
+                document.getElementById('dueDate').textContent = deadlineDate.toLocaleDateString();
+
+                // Transition to fee bill page
+                documentUploadPage.classList.add('hidden');
+                feePortalPage.classList.remove('hidden');
+            }
+        });
+
+        function generateFeeBill() {
+            // Populate fee bill details
+            document.getElementById('billStudentName').textContent = document.getElementById('studentName').value;
+            document.getElementById('billCNIC').textContent = document.getElementById('cnicNumber').value;
+            document.getElementById('billUniversity').textContent = document.getElementById('university').value; // Assuming you want to show the university
+            document.getElementById('billNumber').textContent = Math.floor(Math.random() * 1000000); // Generate a random bill number for demonstration
+
+            // Set dates
+            const currentDate = new Date();
+            const deadlineDate = new Date();
+            deadlineDate.setDate(currentDate.getDate() + 7);
+
+            document.getElementById('billDate').textContent = currentDate.toLocaleDateString();
+            document.getElementById('dueDate').textContent = deadlineDate.toLocaleDateString();
+
+            // Show the fee bill section
+            document.getElementById('feeBillSection').style.display = 'block';
+        }
+
+        function printFeeBill() {
+            const feeBillSection = document.getElementById('feeBillSection');
+            feeBillSection.classList.add('visible-for-print');
+            window.print();
+            feeBillSection.classList.remove('visible-for-print');
+        }
+
+        function proceedToFinalStep() {
+            // Hide the fee portal page and show the dashboard
+            const feePortalPage = document.getElementById('feePortalPage');
+            const dashboardPage = document.getElementById('dashboardPage');
+
+            // Populate the dashboard with user details
+            document.getElementById('dash-studentName').textContent = document.getElementById('studentName').value;
+            document.getElementById('dash-fatherName').textContent = document.getElementById('fatherName').value;
+            document.getElementById('dash-cnic').textContent = document.getElementById('cnicNumber').value;
+            document.getElementById('dash-contact').textContent = document.getElementById('contactNumber').value;
+            document.getElementById('dash-gender').textContent = document.getElementById('gender').value;
+            document.getElementById('dash-birthDate').textContent = document.getElementById('birthDate').value;
+            document.getElementById('dash-email').textContent = document.getElementById('emailAddress').value;
+
+            // Populate academic details
+            document.getElementById('dash-university').textContent = document.getElementById('university').value;
+            document.getElementById('dash-marks').textContent = document.getElementById('obtainedMarks').value;
+            document.getElementById('dash-examCity').textContent = document.getElementById('examCity').value;
+
+            // Transition to the dashboard
+            feePortalPage.classList.add('hidden');
+            dashboardPage.classList.remove('hidden');
+        }
+
+        // JavaScript to handle print button functionality
+        document.getElementById('printDashboard').addEventListener('click', function () {
+            window.print(); // Opens the browser's print dialog
+        });
+
+        // Save current state in sessionStorage
+        window.addEventListener("beforeunload", function () {
+            const activePage = document.querySelector(".container:not(.hidden)").id;
+            sessionStorage.setItem("activePage", activePage);
+        });
+
+        // Restore the state after refresh
+        window.addEventListener("DOMContentLoaded", function () {
+            const savedPage = sessionStorage.getItem("activePage");
+            if (savedPage) {
+                document.querySelectorAll(".container").forEach(container => container.classList.add("hidden"));
+                document.getElementById(savedPage).classList.remove("hidden");
+            } else {
+                // Default to the landing page if no saved state
+                document.querySelectorAll(".container").forEach(container => container.classList.add("hidden"));
+                document.getElementById("landingPage").classList.remove("hidden");
+            }
+        });
+
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            // Session clear karein
+            sessionStorage.clear();
+            localStorage.clear();
+
+            // Sabhi pages ko hide karein aur sirf login form page dikhayein
+            document.querySelectorAll(".container").forEach(container => container.classList.add("hidden"));
+            document.getElementById("loginFormPage").classList.remove("hidden");
+
+            // Optional: Ek confirmation message show karein
+            alert("You have been logged out successfully.");
+        });
+
+    </script>
+</body>
+
+</html>
